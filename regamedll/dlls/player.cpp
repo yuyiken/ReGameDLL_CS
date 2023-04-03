@@ -1069,7 +1069,14 @@ BOOL EXT_FUNC CBasePlayer::__API_HOOK(TakeDamage)(entvars_t *pevInflictor, entva
 
 						if (pPlayer->m_iTeam == m_iTeam)
 						{
+#ifdef REGAMEDLL_ADD
+							if ((int)print_ff.value > 0)
+							{
+								ClientPrint(pPlayer->pev, HUD_PRINTTALK, "#Game_teammate_attack", STRING(pAttack->pev->netname));
+							}						
+#else
 							ClientPrint(pPlayer->pev, HUD_PRINTTALK, "#Game_teammate_attack", STRING(pAttack->pev->netname));
+#endif
 						}
 					}
 
@@ -7809,11 +7816,21 @@ void CBasePlayer::UpdateStatusBar()
 				}
 				else if (GetObserverMode() == OBS_NONE)
 				{
+#ifdef REGAMEDLL_ADD
+					if((int)print_enemy_name.value > 0)
+					{
+						if (playerid.value != PLAYERID_MODE_TEAMONLY && playerid.value != PLAYERID_MODE_OFF)
+							Q_strcpy(sbuf0, "1 %c1: %p2");
+						else
+							Q_strcpy(sbuf0, " ");
+					}
+					
+#else
 					if (playerid.value != PLAYERID_MODE_TEAMONLY && playerid.value != PLAYERID_MODE_OFF)
 						Q_strcpy(sbuf0, "1 %c1: %p2");
 					else
 						Q_strcpy(sbuf0, " ");
-
+#endif
 					if (!(m_flDisplayHistory & DHF_ENEMY_SEEN))
 					{
 						m_flDisplayHistory |= DHF_ENEMY_SEEN;

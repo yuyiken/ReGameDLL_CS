@@ -166,6 +166,9 @@ cvar_t give_c4_frags                     = { "mp_give_c4_frags", "3", 0, 3.0f, n
 cvar_t hostages_rescued_ratio			 = { "mp_hostages_rescued_ratio", "1.0", 0, 1.0f, nullptr };
 cvar_t legacy_vehicle_block              = { "mp_legacy_vehicle_block", "1", 0, 0.0f, nullptr };
 cvar_t smoke_thickness					 = { "mp_smoke_thickness", "1", 0, 1.0f, nullptr };
+cvar_t print_ff							 = { "mp_print_ff", "1", 0, 0.0f, nullptr };
+cvar_t print_enemy_name					 = { "mp_print_enemy_name", "1", 0, 1.0f, nullptr };
+
 
 void GameDLL_Version_f()
 {
@@ -411,6 +414,8 @@ void EXT_FUNC GameDLLInit()
 	CVAR_REGISTER(&hostages_rescued_ratio);
 	CVAR_REGISTER(&legacy_vehicle_block);
 	CVAR_REGISTER(&smoke_thickness);
+	CVAR_REGISTER(&print_ff);
+	CVAR_REGISTER(&print_enemy_name);
 
 	// print version
 	CONSOLE_ECHO("ReGameDLL version: " APP_VERSION "\n");
