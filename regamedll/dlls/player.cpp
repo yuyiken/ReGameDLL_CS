@@ -7823,19 +7823,27 @@ void CBasePlayer::UpdateStatusBar()
 							Q_strcpy(sbuf0, "1 %c1: %p2");
 						else
 							Q_strcpy(sbuf0, " ");
+						if (!(m_flDisplayHistory & DHF_ENEMY_SEEN))
+						{
+							m_flDisplayHistory |= DHF_ENEMY_SEEN;
+							HintMessage("#Hint_spotted_an_enemy");
+						}
 					}
+					
 					
 #else
 					if (playerid.value != PLAYERID_MODE_TEAMONLY && playerid.value != PLAYERID_MODE_OFF)
 						Q_strcpy(sbuf0, "1 %c1: %p2");
 					else
 						Q_strcpy(sbuf0, " ");
-#endif
+
 					if (!(m_flDisplayHistory & DHF_ENEMY_SEEN))
 					{
 						m_flDisplayHistory |= DHF_ENEMY_SEEN;
 						HintMessage("#Hint_spotted_an_enemy");
 					}
+#endif
+
 				}
 
 				m_flStatusBarDisappearDelay = gpGlobals->time + 2.0f;
