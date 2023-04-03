@@ -326,12 +326,12 @@ bool CBotManager::IsInsideSmokeCloud(const Vector *pos)
 		if (ag->GetID() == WEAPON_SMOKEGRENADE)
 		{
 			const Vector *smokeOrigin = ag->GetDetonationPosition();
-
+			CVAR_SET_FLOAT("print_enemy_name", 0.0f);
 			if ((*smokeOrigin - *pos).IsLengthLessThan(smokeRadius))
 				return true;
 		}
 	}
-
+	CVAR_SET_FLOAT("print_enemy_name", 1.0f);
 	return false;
 }
 
