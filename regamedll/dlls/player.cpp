@@ -7817,12 +7817,12 @@ void CBasePlayer::UpdateStatusBar()
 				else if (GetObserverMode() == OBS_NONE)
 				{
 #ifdef REGAMEDLL_ADD
+					if (playerid.value != PLAYERID_MODE_TEAMONLY && playerid.value != PLAYERID_MODE_OFF)
+						Q_strcpy(sbuf0, "1 %c1: %p2");
+					else
+						Q_strcpy(sbuf0, " ");
 					if((int)print_enemy_name.value > 0)
 					{
-						if (playerid.value != PLAYERID_MODE_TEAMONLY && playerid.value != PLAYERID_MODE_OFF)
-							Q_strcpy(sbuf0, "1 %c1: %p2");
-						else
-							Q_strcpy(sbuf0, " ");
 						if (!(m_flDisplayHistory & DHF_ENEMY_SEEN))
 						{
 							m_flDisplayHistory |= DHF_ENEMY_SEEN;
